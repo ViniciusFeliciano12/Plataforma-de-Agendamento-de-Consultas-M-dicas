@@ -1730,11 +1730,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\repositorios_gitHub\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\Hospital.API\\Hospital.API.csproj",
+      "projectUniqueName": "C:\\repositorios_gitHub\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\plataforma-de-agendamento-de-consultas-m-dicas\\hospital.api\\Hospital.API.csproj",
       "projectName": "Hospital.API",
-      "projectPath": "C:\\repositorios_gitHub\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\Hospital.API\\Hospital.API.csproj",
+      "projectPath": "C:\\repositorios_gitHub\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\plataforma-de-agendamento-de-consultas-m-dicas\\hospital.api\\Hospital.API.csproj",
       "packagesPath": "C:\\Nuget",
-      "outputPath": "C:\\repositorios_gitHub\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\Hospital.API\\obj\\",
+      "outputPath": "C:\\repositorios_gitHub\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\plataforma-de-agendamento-de-consultas-m-dicas\\hospital.api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

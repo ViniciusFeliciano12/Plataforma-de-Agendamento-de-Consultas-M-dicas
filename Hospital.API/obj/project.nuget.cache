@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aOJdTq5Ec4A+RV8y78yW0wrhSGUgVgRjCaAI5QLzv6sozJOeA6GhRYze4KSnyi6vpMAIZYlJfrw2quNX94cPgw==",
+  "dgSpecHash": "gjxZEoCSg/8nCK8iuwNp/bm251V6ZQUyShWFPpWU850SYzwc1UjliInOcgeG1DO7gd3K3kitGrC6Fh+ZpiOpdA==",
   "success": true,
-  "projectFilePath": "C:\\repositorios_gitHub\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\Hospital.API\\Hospital.API.csproj",
+  "projectFilePath": "C:\\repositorios_gitHub\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\Plataforma-de-Agendamento-de-Consultas-M-dicas\\hospital.api\\Hospital.API.csproj",
   "expectedPackageFiles": [
     "C:\\Nuget\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Nuget\\microsoft.aspnetcore.openapi\\7.0.9\\microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512",

@@ -1,10 +1,12 @@
 using Events.API.Models;
 using Events.Data;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Events.API.Controllers
 {
     [ApiController]
+    [EnableCors("AllowAnyOrigin")]
     [Route("api/[controller]")]
     public class ConsultaController : ControllerBase
     {
