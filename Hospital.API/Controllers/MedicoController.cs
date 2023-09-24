@@ -59,10 +59,10 @@ namespace Events.API.Controllers
         }
 
         [HttpPut("/medicos")]
-        public IActionResult Put([FromRoute] int id, 
+        public IActionResult Put(
         [FromBody] MedicoModel medicoModel,
         [FromServices] AppDbContext context){
-            var model = context.Medicos!.FirstOrDefault(x => x.Id == id);
+            var model = context.Medicos!.FirstOrDefault(x => x.Id == medicoModel.Id);
             if (model == null){
                 return NotFound();
             }

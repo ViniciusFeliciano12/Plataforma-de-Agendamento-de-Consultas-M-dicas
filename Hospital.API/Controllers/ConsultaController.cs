@@ -21,7 +21,8 @@ namespace Events.API.Controllers
 
         [HttpGet]
         [Route("/consultas/{id:int}")]
-        public IActionResult Get([FromRoute] int id,
+        public IActionResult Get(
+            [FromRoute] int id,
             [FromServices] AppDbContext context)
         {
             var consultaModel = context.Consultas!.FirstOrDefault(x => x.Id == id);
@@ -57,10 +58,10 @@ namespace Events.API.Controllers
         }
 
         [HttpPut("/consultas")]
-        public IActionResult Put([FromRoute] int id, 
+        public IActionResult Put( 
         [FromBody] ConsultaModel consultaModel,
         [FromServices] AppDbContext context){
-            var model = context.Consultas!.FirstOrDefault(x => x.Id == id);
+            var model = context.Consultas!.FirstOrDefault(x => x.Id == consultaModel.Id);
                 if (model == null){
                     return NotFound();
                 }

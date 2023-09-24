@@ -58,10 +58,10 @@ namespace Events.API.Controllers
         }
 
         [HttpPut("/especialidades")]
-        public IActionResult Put([FromRoute] int id, 
+        public IActionResult Put(
         [FromBody] EspecialidadeModel especialidadeModel,
         [FromServices] AppDbContext context){
-            var model = context.Especialidades!.FirstOrDefault(x => x.Id == id);
+            var model = context.Especialidades!.FirstOrDefault(x => x.Id == especialidadeModel.Id);
                 if (model == null){
                     return NotFound();
                 }

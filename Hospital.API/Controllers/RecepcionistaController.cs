@@ -57,21 +57,21 @@ namespace Events.API.Controllers
         }
 
         [HttpPut("/recepcionistas")]
-        public IActionResult PutProducts([FromRoute] int id, 
+        public IActionResult PutProducts( 
         [FromBody] RecepcionistaModel recepcionistaModel,
         [FromServices] AppDbContext context){
-            var model = context.Recepcionistas!.FirstOrDefault(x => x.Id == id);
-                if (model == null){
-                    return NotFound();
-                }
+            var model = context.Recepcionistas!.FirstOrDefault(x => x.Id == recepcionistaModel.Id);
+            if (model == null){
+                return NotFound();
+            }
 
-                model.Name = recepcionistaModel.Name;
-                model.Sobrenome = recepcionistaModel.Sobrenome;
-                model.Telefone = recepcionistaModel.Telefone;
+            model.Name = recepcionistaModel.Name;
+            model.Sobrenome = recepcionistaModel.Sobrenome;
+            model.Telefone = recepcionistaModel.Telefone;
 
-                context.Recepcionistas!.Update(model);
-                context.SaveChanges();
-                return Ok(model);
+            context.Recepcionistas!.Update(model);
+            context.SaveChanges();
+            return Ok(model);
         }
 
         [HttpDelete("/recepcionistas/{id:int}")]
