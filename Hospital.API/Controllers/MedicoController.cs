@@ -67,7 +67,7 @@ namespace Events.API.Controllers
                 return NotFound();
             }
 
-            model.HorariosDisponiveis = medicoModel.HorariosDisponiveis;
+            model.ConsultasMedicas = medicoModel.ConsultasMedicas;
             model.Name = medicoModel.Name;
             model.RegistroProfissional = medicoModel.RegistroProfissional;
             model.Especialidade = medicoModel.Especialidade;

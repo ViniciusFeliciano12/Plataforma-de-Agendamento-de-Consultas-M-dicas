@@ -68,7 +68,7 @@ namespace Events.API.Controllers
 
             model.Name = pacienteModel.Name;
             model.Sobrenome = pacienteModel.Sobrenome;
-            model.HistoricoMedico = pacienteModel.HistoricoMedico;
+            model.ConsultasMedicas = pacienteModel.ConsultasMedicas;
 
             context.Pacientes!.Update(model);
             context.SaveChanges();

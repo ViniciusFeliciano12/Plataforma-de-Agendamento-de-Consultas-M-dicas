@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Events.API.Models
 {
     public class MedicoModel
@@ -6,6 +8,8 @@ namespace Events.API.Models
         public string? Name {get; set;}
         public string? Especialidade {get; set;}
         public string? RegistroProfissional {get; set;}
-        public List<ConsultaModel>? HorariosDisponiveis {get; set;}
+
+        [JsonIgnore]
+        public List<ConsultaModel>? ConsultasMedicas { get; set; }    
     }
 }

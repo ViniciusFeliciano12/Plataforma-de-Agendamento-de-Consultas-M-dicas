@@ -75,11 +75,11 @@ namespace Hospital.API.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    MedicoId = table.Column<int>(type: "INTEGER", nullable: true),
-                    PacienteId = table.Column<int>(type: "INTEGER", nullable: true),
                     DataEHora = table.Column<DateTime>(type: "TEXT", nullable: true),
                     TipoConsulta = table.Column<string>(type: "TEXT", nullable: true),
-                    Observacoes = table.Column<string>(type: "TEXT", nullable: true)
+                    Observacoes = table.Column<string>(type: "TEXT", nullable: true),
+                    MedicoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PacienteId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,12 +88,14 @@ namespace Hospital.API.Migrations
                         name: "FK_Consultas_Medicos_MedicoId",
                         column: x => x.MedicoId,
                         principalTable: "Medicos",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Consultas_Pacientes_PacienteId",
                         column: x => x.PacienteId,
                         principalTable: "Pacientes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

@@ -65,9 +65,8 @@ namespace Events.API.Controllers
                 if (model == null){
                     return NotFound();
                 }
-
-                model.Medico = consultaModel.Medico;
-                model.Paciente = consultaModel.Paciente;
+                model.MedicoId = consultaModel.MedicoId;
+                model.PacienteId = consultaModel.PacienteId;
                 model.TipoConsulta = consultaModel.TipoConsulta;
                 model.DataEHora = consultaModel.DataEHora;
                 model.Observacoes = consultaModel.Observacoes;

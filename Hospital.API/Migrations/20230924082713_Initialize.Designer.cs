@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230923202836_Initialize")]
+    [Migration("20230924082713_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -29,13 +29,13 @@ namespace Hospital.API.Migrations
                     b.Property<DateTime?>("DataEHora")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("MedicoId")
+                    b.Property<int>("MedicoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Observacoes")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("PacienteId")
+                    b.Property<int>("PacienteId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("TipoConsulta")
@@ -127,12 +127,16 @@ namespace Hospital.API.Migrations
             modelBuilder.Entity("Events.API.Models.ConsultaModel", b =>
                 {
                     b.HasOne("Events.API.Models.MedicoModel", "Medico")
-                        .WithMany("HorariosDisponiveis")
-                        .HasForeignKey("MedicoId");
+                        .WithMany("ConsultasMedicas")
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Events.API.Models.PacienteModel", "Paciente")
-                        .WithMany("HistoricoMedico")
-                        .HasForeignKey("PacienteId");
+                        .WithMany("ConsultasMedicas")
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Medico");
 
@@ -141,12 +145,12 @@ namespace Hospital.API.Migrations
 
             modelBuilder.Entity("Events.API.Models.MedicoModel", b =>
                 {
-                    b.Navigation("HorariosDisponiveis");
+                    b.Navigation("ConsultasMedicas");
                 });
 
             modelBuilder.Entity("Events.API.Models.PacienteModel", b =>
                 {
-                    b.Navigation("HistoricoMedico");
+                    b.Navigation("ConsultasMedicas");
                 });
 #pragma warning restore 612, 618
         }
