@@ -19,17 +19,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Recepcionista> recepcionistas = [];
 
+  Widget _body() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const <Widget>[
+        TopNavigationBar(selectedIndex: 1),
+        SizedBox(height: 10),
+        Center(
+          child: Text(
+            "Dashboard",
+            style: TextStyle(fontSize: 70),
+          ),
+        ),
+        Text("Médico mais requisitado:")
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("hospital gamificação"),
       ),
-      body: Column(
-        children: <Widget>[
-          const TopNavigationBar(selectedIndex: 1),
-        ],
-      ),
+      body: _body(),
     );
   }
 }
