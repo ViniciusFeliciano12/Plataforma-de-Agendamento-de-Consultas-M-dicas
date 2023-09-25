@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230924082713_Initialize")]
+    [Migration("20230924220042_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -73,8 +73,8 @@ namespace Hospital.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Especialidade")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("EspecialidadeId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
@@ -83,6 +83,8 @@ namespace Hospital.API.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EspecialidadeId");
 
                     b.ToTable("Medicos");
                 });
@@ -141,6 +143,15 @@ namespace Hospital.API.Migrations
                     b.Navigation("Medico");
 
                     b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("Events.API.Models.MedicoModel", b =>
+                {
+                    b.HasOne("Events.API.Models.EspecialidadeModel", "Especialidade")
+                        .WithMany()
+                        .HasForeignKey("EspecialidadeId");
+
+                    b.Navigation("Especialidade");
                 });
 
             modelBuilder.Entity("Events.API.Models.MedicoModel", b =>

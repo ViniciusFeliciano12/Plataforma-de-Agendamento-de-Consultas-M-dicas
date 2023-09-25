@@ -2,6 +2,7 @@ using Events.API.Models;
 using Events.Data;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Events.API.Controllers
 {
@@ -16,7 +17,23 @@ namespace Events.API.Controllers
         public IActionResult Get(
             [FromServices] AppDbContext context)
         {
-            return Ok(context.Medicos!.ToList());
+           var medicos = context.Medicos!
+            .Include(m => m.Especialidade).Include(m => m.ConsultasMedicas) 
+            .ToList();
+
+            List<MedicoGetModel> ListaAEnviar = new List<MedicoGetModel>();
+            foreach(var item in medicos){
+                MedicoGetModel Medico = new MedicoGetModel
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    RegistroProfissional = item.RegistroProfissional,
+                    Especialidade = item.Especialidade,
+                    ConsultasMedicas = item.ConsultasMedicas
+                };
+                ListaAEnviar.Add(Medico);
+            }
+            return Ok(ListaAEnviar);
         }
 
         [HttpGet]
@@ -36,24 +53,36 @@ namespace Events.API.Controllers
 
             var model = context.Medicos!.ToList();
             var count = 0;
+            var aux = medicoModel.Especialidade;
             if (model != null){
                 foreach(var item in model){
                     if (item.Id != count){
+                        medicoModel.Especialidade = null;
                         medicoModel.Id = count;
                         context.Medicos!.Add(medicoModel);
+                        context.SaveChanges();
+                        medicoModel.Especialidade = aux;
+                        context.Medicos!.Update(medicoModel);
                         context.SaveChanges();
                         return Created($"/{medicoModel.Id}", medicoModel);
                     }
                     count++;
                 }
+                medicoModel.Especialidade = null;
                 medicoModel.Id = count;
                 context.Medicos!.Add(medicoModel);
                 context.SaveChanges();
+                medicoModel.Especialidade = aux;
+                context.Medicos!.Update(medicoModel);
+                context.SaveChanges();
                 return Created($"/{medicoModel.Id}", medicoModel);
             }
-            
             medicoModel.Id = 0;
+            medicoModel.Especialidade = null;
+            medicoModel.Id = count;
             context.Medicos!.Add(medicoModel);
+            medicoModel.Especialidade = aux;
+            context.Medicos!.Update(medicoModel);
             context.SaveChanges();
             return Created($"/{medicoModel.Id}", medicoModel);
         }

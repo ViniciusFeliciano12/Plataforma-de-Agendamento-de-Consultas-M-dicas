@@ -4,7 +4,10 @@ import 'package:hospital_gamificacao/bloc/especialidade_page/especialidade_bloc.
 import 'package:hospital_gamificacao/bloc/especialidade_page/especialidade_event.dart';
 import 'package:hospital_gamificacao/bloc/especialidade_page/especialidade_state.dart';
 import 'package:hospital_gamificacao/models/especialidade.dart';
+import 'package:hospital_gamificacao/services/service_locator.dart';
 import 'package:hospital_gamificacao/view/top_navigation_bar.dart';
+
+import '../services/interfaces/ihospital_api.dart';
 
 class EspecialidadePage extends StatefulWidget {
   const EspecialidadePage({super.key});
@@ -77,6 +80,7 @@ class _EspecialidadePageState extends State<EspecialidadePage> {
 
   late List<Especialidade> especialidades = [];
   late final EspecialidadeBloc bloc;
+  final IHospitalApi _apiService = getIt<IHospitalApi>();
 
   @override
   void initState() {
@@ -184,7 +188,7 @@ class _EspecialidadePageState extends State<EspecialidadePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Título da Pop-up"),
+          title: const Text("Adicionar especialidade"),
           content: Column(
             children: [
               _buildTextField("Especialidade:", especialidadeController),

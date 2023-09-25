@@ -81,7 +81,13 @@ namespace Events.API.Controllers
             if (model == null){
                 return NotFound();
             }
-
+            var medicos = context.Medicos!.ToList();
+            foreach(var item in medicos){
+                if (item.Especialidade != null && item.Especialidade.Id == id){
+                    item.Especialidade = null;
+                    context.Medicos!.Update(item);
+                }
+            }
             context.Especialidades!.Remove(model);
             context.SaveChanges();
             return Ok(model);

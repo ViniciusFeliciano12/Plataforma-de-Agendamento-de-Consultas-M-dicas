@@ -2,6 +2,7 @@ using Events.API.Models;
 using Events.Data;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Events.API.Controllers
 {
@@ -16,7 +17,20 @@ namespace Events.API.Controllers
         public IActionResult Get(
             [FromServices] AppDbContext context)
         {
-            return Ok(context.Pacientes!.ToList());
+            var ListaAuxiliar = context.Pacientes!.Include(m => m.ConsultasMedicas).ToList();
+            List<PacienteGetModel> ListaAEnviar = new List<PacienteGetModel>();
+            foreach(var item in ListaAuxiliar){
+                PacienteGetModel Paciente = new PacienteGetModel
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Sobrenome = item.Sobrenome,
+                    ConsultasMedicas = item.ConsultasMedicas
+                };
+                ListaAEnviar.Add(Paciente);
+            }
+
+            return Ok(ListaAEnviar);
         }
 
         [HttpGet]

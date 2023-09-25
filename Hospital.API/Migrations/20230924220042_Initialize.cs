@@ -26,21 +26,6 @@ namespace Hospital.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Medicos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Especialidade = table.Column<string>(type: "TEXT", nullable: true),
-                    RegistroProfissional = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Medicos", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Pacientes",
                 columns: table => new
                 {
@@ -67,6 +52,26 @@ namespace Hospital.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Recepcionistas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Medicos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    EspecialidadeId = table.Column<int>(type: "INTEGER", nullable: true),
+                    RegistroProfissional = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medicos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Medicos_Especialidades_EspecialidadeId",
+                        column: x => x.EspecialidadeId,
+                        principalTable: "Especialidades",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -107,6 +112,11 @@ namespace Hospital.API.Migrations
                 name: "IX_Consultas_PacienteId",
                 table: "Consultas",
                 column: "PacienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medicos_EspecialidadeId",
+                table: "Medicos",
+                column: "EspecialidadeId");
         }
 
         /// <inheritdoc />
@@ -116,9 +126,6 @@ namespace Hospital.API.Migrations
                 name: "Consultas");
 
             migrationBuilder.DropTable(
-                name: "Especialidades");
-
-            migrationBuilder.DropTable(
                 name: "Recepcionistas");
 
             migrationBuilder.DropTable(
@@ -126,6 +133,9 @@ namespace Hospital.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Pacientes");
+
+            migrationBuilder.DropTable(
+                name: "Especialidades");
         }
     }
 }

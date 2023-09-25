@@ -191,7 +191,7 @@ class _RecepcionistaPageState extends State<RecepcionistaPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Título da Pop-up"),
+          title: const Text("Adicionar recepcionista"),
           content: Column(
             children: [
               _buildTextField("Nome:", nomeController),

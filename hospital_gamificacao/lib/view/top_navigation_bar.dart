@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_gamificacao/view/HomePage.dart';
+import 'package:hospital_gamificacao/view/consulta_page.dart';
 import 'package:hospital_gamificacao/view/especialidade_page.dart';
+import 'package:hospital_gamificacao/view/medico_page.dart';
+import 'package:hospital_gamificacao/view/paciente_page.dart';
 import 'package:hospital_gamificacao/view/recepcionista_page.dart';
 
 class TopNavigationBar extends StatelessWidget {
@@ -58,6 +61,27 @@ class TopNavigationBar extends StatelessWidget {
               if (selectedIndex == 2) {
                 return;
               }
+              Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const MedicoPage(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    var begin = const Offset(1.0, 0.0);
+                    var end = Offset.zero;
+                    var curve = Curves.ease;
+
+                    var tween = Tween(begin: begin, end: end)
+                        .chain(CurveTween(curve: curve));
+
+                    return SlideTransition(
+                      position: animation.drive(tween),
+                      child: child,
+                    );
+                  },
+                ),
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white, // Cor de fundo do botão
@@ -110,6 +134,28 @@ class TopNavigationBar extends StatelessWidget {
               if (selectedIndex == 4) {
                 return;
               }
+
+              Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const PacientePage(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    var begin = const Offset(1.0, 0.0);
+                    var end = Offset.zero;
+                    var curve = Curves.ease;
+
+                    var tween = Tween(begin: begin, end: end)
+                        .chain(CurveTween(curve: curve));
+
+                    return SlideTransition(
+                      position: animation.drive(tween),
+                      child: child,
+                    );
+                  },
+                ),
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
@@ -161,6 +207,28 @@ class TopNavigationBar extends StatelessWidget {
               if (selectedIndex == 6) {
                 return;
               }
+
+              Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      const ConsultaPage(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    var begin = const Offset(1.0, 0.0);
+                    var end = Offset.zero;
+                    var curve = Curves.ease;
+
+                    var tween = Tween(begin: begin, end: end)
+                        .chain(CurveTween(curve: curve));
+
+                    return SlideTransition(
+                      position: animation.drive(tween),
+                      child: child,
+                    );
+                  },
+                ),
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,

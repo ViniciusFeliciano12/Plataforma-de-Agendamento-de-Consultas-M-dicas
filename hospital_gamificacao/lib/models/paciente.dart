@@ -2,32 +2,35 @@ import 'package:hospital_gamificacao/models/consulta.dart';
 
 class Paciente {
   int id;
-  String nome;
+  String name;
   String sobrenome;
-  List<Consulta>? consultas;
+  List<Consulta> consultasMedicas;
 
   Paciente({
     required this.id,
-    required this.nome,
+    required this.name,
     required this.sobrenome,
-    this.consultas,
+    required this.consultasMedicas,
   });
 
   factory Paciente.fromJson(Map<String, dynamic> json) {
+    var consultasMedicasJson = json['consultasMedicas'] as List<dynamic>;
+
     return Paciente(
       id: json['id'] as int,
-      nome: json['name'] as String,
+      name: json['name'] as String,
       sobrenome: json['sobrenome'] as String,
-      consultas: json['consultas'] as List<Consulta>,
+      consultasMedicas: consultasMedicasJson
+          .map((consultaJson) => Consulta.fromJson(consultaJson))
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'name': nome,
+      'name': name,
       'sobrenome': sobrenome,
-      'consultas': consultas,
     };
   }
 }

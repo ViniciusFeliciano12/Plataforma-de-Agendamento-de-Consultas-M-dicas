@@ -40,7 +40,7 @@ class EspecialidadeBloc extends Bloc<EspecialidadeEvent, EspecialidadeState> {
         bool response;
         try {
           response =
-              await _apiService.removeRecepcionista(event.especialidadeID);
+              await _apiService.removeEspecialidades(event.especialidadeID);
           if (response != true) {
             emit(EspecialidadeErrorState());
           }
